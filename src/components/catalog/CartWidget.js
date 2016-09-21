@@ -3,12 +3,20 @@ import React, { Component } from 'react';
 import './CartWidget.css';
 
 class CartWidget extends Component {
+  constructor(props) {
+  	super(props);
+  	this.state = {
+  		isActive: true
+    };
+    this._handleVisibility = this._handleVisibility.bind(this);
+  }
   render() {
+  	let active = this.state.isActive ? 'hidden' : '';
     return (
       <div className='cart-widget'>
-      	<aside className='sidebar'>
+      	<aside className={'sidebar ' + active}>
       		<div className='sidebar-inner'>
-      			<i className='fa fa-times close'></i>
+      			<i onClick={this._handleVisibility} className='fa fa-times close'></i>
       			<h4 className='text-capitalize'>Cart summary</h4>
       			<p>Cart subtotal (<a href=''>X item</a>): $XX.XX</p>
       			<hr/>
@@ -43,11 +51,16 @@ class CartWidget extends Component {
   				</a>
       		</div>
       	</aside>
-        <span className='fa fa-shopping-cart btn-cartwidget' data-toggle='sidebar' role='button'>
+        <span onClick={this._handleVisibility} className='fa fa-shopping-cart btn-cartwidget' role='button'>
           <span className='badge'>42</span>
         </span>
       </div>
     );
+  }
+  _handleVisibility(){
+  	this.setState({
+        isActive: !this.state.isActive
+    });
   }
 }
 
