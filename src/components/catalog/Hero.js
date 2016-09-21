@@ -6,7 +6,7 @@ class Hero extends Component {
 		<div className='jumbotron'>
 			<h1>{this.props.content.title}</h1>
 			<p>{this.props.content.subtitle}</p>
-			<a href='' className='btn btn-default'>Fork me on GitHub</a>
+			<a href='https://github.com/elmahdim/estore-react' className='btn btn-default'>Fork me on GitHub</a>
 		</div>
     );
   }
