@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router';
 
 import Hero from '../catalog/Hero';
 
@@ -56,7 +57,7 @@ class Cart extends Component {
                   </td>
                   <td>$xx.xx</td>
                   <td>
-                    <i className="fa fa-trash-o text-muted fz-h4" role="button"></i>
+                    <i className="fa fa-trash-o text-danger fz-h4" role="button"></i>
                   </td>
                 </tr>
                 <tr>
@@ -84,15 +85,15 @@ class Cart extends Component {
                   </td>
                   <td>$xx.xx</td>
                   <td>
-                    <i className="fa fa-trash-o text-muted fz-h4" role="button"></i>
+                    <i className="fa fa-trash-o text-danger fz-h4" role="button"></i>
                   </td>
                 </tr>
               </tbody>
             </table>
+            <Link to='/' className='btn btn-link'>Continue Shopping</Link>  
           </div>
           <div className="col-sm-4">
             <div className="panel panel-default">
-              <div className="panel-heading">Panel heading</div>
               <div className="panel-body">
                 <div className="row">
                   <div className="col-sm-6 text-right text-muted">Subtotal:</div>
@@ -109,6 +110,7 @@ class Cart extends Component {
                 </div>
               </div>
             </div>
+            <Link to="/checkout" className="btn btn-lg btn-block">Proceed to checkout</Link>
           </div>
         </div>
       </div>
