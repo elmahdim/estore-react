@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router';
 
 import './CartWidget.css';
 
@@ -18,7 +19,7 @@ class CartWidget extends Component {
       		<div className='sidebar-inner'>
       			<i onClick={this._handleVisibility} className='fa fa-times close'></i>
       			<h4 className='text-capitalize'>Cart summary</h4>
-      			<p>Cart subtotal (<a href=''>X item</a>): $XX.XX</p>
+      			<p>Cart subtotal (<Link to='/cart'>X item</Link>): $XX.XX</p>
       			<hr/>
       			<div className='media'>
 	      			<div className='media-left'>
@@ -42,13 +43,13 @@ class CartWidget extends Component {
       			</div>
       			<hr/>
   				<p>
-  					<a href='' className='btn btn-default btn-block'>
+  					<Link to='/cart' className='btn btn-default btn-block'>
   						<i className='fa fa-shopping-cart'></i> View cart
-  					</a>
+  					</Link>
   				</p>
-  				<a href='' className='btn btn-primary btn-block'>
+  				<Link to='/checkout' className='btn btn-primary btn-block'>
   					<strong>$</strong> Checkout
-  				</a>
+  				</Link>
       		</div>
       	</aside>
         <span onClick={this._handleVisibility} className='fa fa-shopping-cart btn-cartwidget' role='button'>

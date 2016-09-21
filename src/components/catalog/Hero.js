@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Hero = () => (
- <div className='jumbotron'>
-   <h1>Catalog</h1>
-   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi.</p>
-   <a href='' className='btn btn-default'>Fork me on GitHub</a>
- </div>
-);
+class Hero extends Component {
+  render() {
+    return (
+		<div className='jumbotron'>
+			<h1>{this.props.content.title}</h1>
+			<p>{this.props.content.subtitle}</p>
+			<a href='' className='btn btn-default'>Fork me on GitHub</a>
+		</div>
+    );
+  }
+}
 
 export default Hero;
