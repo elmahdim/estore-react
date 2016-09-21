@@ -1,0 +1,9 @@
+.input-group-qty .form-control {
+	width: 80px;
+}
+.fz-h4  {
+	font-size: 24px;
+}
+.table-cart>tbody>tr>td {
+	vertical-align: middle;
+}
