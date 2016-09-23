@@ -8,7 +8,7 @@ module.exports = (_items) => {
         <div className='col-md-3 col-sm-6' key={i} id={'item-'+i}>
           <div className='thumbnail'>
             <div className='caption'>
-              <img src={'http://placehold.it/400/'+bgColor+'/'+randomHex+'?text='+ _item.sku +'&w=300&h=200'} alt={_item.name} className='img-responsive' />
+              <img src={'http://placehold.it/400/'+bgColor+'/'+randomHex+'?text='+ _item.sku} alt={_item.name} className='img-responsive' />
               <h4>{_item.name}</h4>
               <span>{_item.description}</span>     
               <h5>{'$' + _item.price}</h5>         
