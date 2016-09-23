@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 module.exports = (_items) => {
     const _ItemList = _items.map((_item, i) => {
@@ -13,9 +13,7 @@ module.exports = (_items) => {
               <span>{_item.description}</span>     
               <h5>{'$' + _item.price}</h5>         
               <div className="text-right">
-                <button type='button' className='btn btn-default btn-lg'>
-                  <i className='fa fa-cart-plus'></i>
-                </button>
+                <AddToCartButton />
               </div>
             </div>
           </div>
@@ -23,4 +21,14 @@ module.exports = (_items) => {
       )
     });
     return _ItemList;
+}
+
+class AddToCartButton extends Component {
+  render() {
+    return (
+      <button type='button' className='btn btn-default btn-lg'>
+        <i className='fa fa-cart-plus'></i>
+      </button>
+    );
+  }
 }
