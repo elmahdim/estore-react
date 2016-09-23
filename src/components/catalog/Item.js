@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Item extends Component {
-  render() {
+module.exports = (_items) => {
+    const _ItemList = _items.map((_item, i) => {
+    let bgColor   = 'ffffff';
+    let randomHex = (Math.random()*0xFFFFFF<<0).toString(16);
     return (
-      <div className='col-md-3 col-sm-6'>
-        <div className='thumbnail'>
-          <div className='caption'>
-              <img src='https://placeholdit.imgix.net/~text?txtsize=30&txt=Feature Label&w=300&h=200' alt='Item' className='img-responsive' />
-              <h4>Feature Label</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>              
+        <div className='col-md-3 col-sm-6' key={i} id={'item-'+i}>
+          <div className='thumbnail'>
+            <div className='caption'>
+              <img src={'http://placehold.it/400/'+bgColor+'/'+randomHex+'?text='+ _item.sku +'&w=300&h=200'} alt={_item.name} className='img-responsive' />
+              <h4>{_item.name}</h4>
+              <span>{_item.description}</span>     
+              <h5>{'$' + _item.price}</h5>         
               <div className="text-right">
-                <button type='button' className='btn btn-primary btn-lg'>
+                <button type='button' className='btn btn-default btn-lg'>
                   <i className='fa fa-cart-plus'></i>
                 </button>
               </div>
+            </div>
           </div>
         </div>
-      </div>
-    );
-  }
+      )
+    });
+    return _ItemList;
 }
-
-export default Item;
