@@ -5,7 +5,7 @@ module.exports = (_items) => {
     let bgColor   = 'ffffff';
     let randomHex = (Math.random()*0xFFFFFF<<0).toString(16);
     return (
-        <div className='col-md-3 col-sm-6' key={i} id={'item-'+i}>
+        <div className='col-md-3 col-sm-6' key={i} id={_item._id}>
           <div className='thumbnail'>
             <div className='caption'>
               <img src={'http://placehold.it/400/'+bgColor+'/'+randomHex+'?text='+ _item.sku} alt={_item.name} className='img-responsive' />
@@ -13,7 +13,7 @@ module.exports = (_items) => {
               <span>{_item.description}</span>     
               <h5>{'$' + _item.price}</h5>         
               <div className="text-right">
-                <AddToCartButton />
+                <AddToCartButton id={_item._id}/>
               </div>
             </div>
           </div>
@@ -26,9 +26,15 @@ module.exports = (_items) => {
 class AddToCartButton extends Component {
   render() {
     return (
-      <button type='button' className='btn btn-default btn-lg'>
+      <button onClick={this._addToCartHandler} type='button' className='btn btn-default btn-lg'>
         <i className='fa fa-cart-plus'></i>
       </button>
     );
+  }
+  _addToCartHandler(){
+    let newItem = {
+      id: this.props.id,
+      qty: this.state.qty
+    };
   }
 }
