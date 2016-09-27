@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Hero from './Hero';
-import Item from './Item';
+import Items from './Items';
 import CartWidget from './CartWidget';
 
 class Catalog extends Component {
@@ -20,13 +20,10 @@ class Catalog extends Component {
   }
   render() {
     const currentComponent = this.constructor.name.toLowerCase();
-    let items = Item(this.state.items);
     return (
       <div className={'container component-' + currentComponent}>
         <Hero content={this.state.hero}/>
-        <div className='row text-center'>
-          {items}
-        </div>
+        <Items data={this.state.items} />
         <CartWidget />
       </div>
     );
