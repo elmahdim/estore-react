@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 class Items extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      list: [],
+      qty : 1
+    };
+  }
   render(){
     let data = this.props.data;
     let item = data.map((_item, i) => {
@@ -19,7 +26,7 @@ class Items extends Component {
               <span>{_item.description}</span>     
               <h5>{'$' + _item.price}</h5>         
               <div className="text-right">
-                CTA
+                <AddToCartBtn onClick={this._addToCartHandler.bind(this, _item._id)} />
               </div>
             </div>
           </div>
@@ -27,6 +34,15 @@ class Items extends Component {
       )
     });
     return <div className='row text-center'>{item}</div>;
+  }
+  _addToCartHandler(_id){
+    let item = {
+      id: _id,
+      qty: this.state.qty
+    };
+    let listHandler = this.state.list.filter(item => item.id === _id);
+    (listHandler.length > 0) ? listHandler[0].qty += 1 : this.state.list.push(item);
+    localStorage.setItem('itemsList', JSON.stringify(this.state.list));
   }
 }
 
@@ -36,6 +52,16 @@ class ItemThumb extends Component {
     render(){
         return(
             <img src={'http://placehold.it/400/'+this.props.thumbnail.background+'/'+this.props.thumbnail.textColor+'?text='+ this.props.thumbnail.caption} alt={this.props.thumbnail.alt} className='img-responsive' />
+        );
+    }
+}
+
+class AddToCartBtn extends Component {
+    render(){
+        return(
+            <button onClick={this.props.onClick} type='button' className='btn btn-default btn-lg'>
+                <i className='fa fa-cart-plus'></i>
+            </button>
         );
     }
 }
