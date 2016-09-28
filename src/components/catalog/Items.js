@@ -43,6 +43,9 @@ class Items extends Component {
     let listHandler = this.state.list.filter(item => item.id === _id);
     (listHandler.length > 0) ? listHandler[0].qty += 1 : this.state.list.push(item);
     localStorage.setItem('itemsList', JSON.stringify(this.state.list));
+    const sumQty =(items, prop) => items.reduce((a, b) => a + b[prop], 0);
+    let totalItems = sumQty(this.state.list, 'qty');
+    localStorage.setItem('totalItems', totalItems);
   }
 }
 

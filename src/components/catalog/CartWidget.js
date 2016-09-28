@@ -11,8 +11,16 @@ class CartWidget extends Component {
     };
     this._handleVisibility = this._handleVisibility.bind(this);
   }
+
+  componentDidMount() {
+    window.addEventListener('storage', (e) => {  
+      this.setState(this.state);
+    });
+  }
+  
   render() {
-  	let active = this.state.isActive ? 'hidden' : '';
+  	let active  = this.state.isActive ? 'hidden' : '';
+    let storage = localStorage.getItem('totalItems');
     return (
       <div className='cart-widget'>
       	<aside className={'sidebar ' + active}>
@@ -35,6 +43,8 @@ class CartWidget extends Component {
 	      			<div className='media-left'>
 	      				<img src='https://placeholdit.imgix.net/~text?txtsize=18&txt=item&w=50&h=50' alt='' className='media-object'/>
 	      			</div>
+
+
 	      			<div className='media-body'>
 	      				<h5 className='media-heading'>ger</h5>
 	      				<span># x $xx.xx</span>
@@ -53,7 +63,7 @@ class CartWidget extends Component {
       		</div>
       	</aside>
         <span onClick={this._handleVisibility} className='fa fa-shopping-cart btn-cartwidget' role='button'>
-          <span className='badge'>42</span>
+          {storage ? ( <span className='badge'>#</span> ) :  null} 
         </span>
       </div>
     );
