@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
+import CartWidget from './CartWidget';
 
 class Items extends Component {
   constructor(props){
     super(props);
     this.state = {
       list: [],
-      qty : 1
+      qty : 1,
+      incart: 0
     };
   }
+  
+  componentDidMount() {
+    this.setState({
+      incart: localStorage.getItem('totalItems')
+    });
+  }
+
   render(){
     let data = this.props.data;
     let item = data.map((_item, i) => {
@@ -33,7 +42,12 @@ class Items extends Component {
         </div>
       )
     });
-    return <div className='row text-center'>{item}</div>;
+    return (
+    <div className='row text-center'>
+      {item} 
+      <CartWidget qty={this.state.incart} />
+    </div>
+    );
   }
   _addToCartHandler(_id){
     let item = {
@@ -46,6 +60,9 @@ class Items extends Component {
     const sumQty =(items, prop) => items.reduce((a, b) => a + b[prop], 0);
     let totalItems = sumQty(this.state.list, 'qty');
     localStorage.setItem('totalItems', totalItems);
+    this.setState({
+      incart: localStorage.getItem('totalItems')
+    });
   }
 }
 

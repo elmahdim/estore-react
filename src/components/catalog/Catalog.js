@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Hero from './Hero';
 import Items from './Items';
-import CartWidget from './CartWidget';
 
 class Catalog extends Component {
   constructor() {
@@ -24,7 +23,6 @@ class Catalog extends Component {
       <div className={'container component-' + currentComponent}>
         <Hero content={this.state.hero}/>
         <Items data={this.state.items} />
-        <CartWidget />
       </div>
     );
   }

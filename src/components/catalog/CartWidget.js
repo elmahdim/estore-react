@@ -17,10 +17,9 @@ class CartWidget extends Component {
       this.setState(this.state);
     });
   }
-  
+
   render() {
   	let active  = this.state.isActive ? 'hidden' : '';
-    let storage = localStorage.getItem('totalItems');
     return (
       <div className='cart-widget'>
       	<aside className={'sidebar ' + active}>
@@ -63,7 +62,7 @@ class CartWidget extends Component {
       		</div>
       	</aside>
         <span onClick={this._handleVisibility} className='fa fa-shopping-cart btn-cartwidget' role='button'>
-          {storage ? ( <span className='badge'>#</span> ) :  null} 
+          <span className='badge'>{this.props.qty}</span>
         </span>
       </div>
     );
