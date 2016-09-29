@@ -21,12 +21,12 @@ class CartWidget extends Component {
   render() {
   	let active  = this.state.isActive ? 'hidden' : '';
     return (
-      <div className='cart-widget'>
+      <div className='cart-widget text-left'>
       	<aside className={'sidebar ' + active}>
       		<div className='sidebar-inner'>
       			<i onClick={this._handleVisibility} className='fa fa-times close'></i>
       			<h4 className='text-capitalize'>Cart summary</h4>
-      			<p>Cart subtotal (<Link to='/cart'>X item</Link>): $XX.XX</p>
+      			<p>Cart subtotal (<Link to='/cart'>{this.props.qty} item</Link>): $XX.XX</p>
       			<hr/>
       			<div className='media'>
 	      			<div className='media-left'>
@@ -42,8 +42,6 @@ class CartWidget extends Component {
 	      			<div className='media-left'>
 	      				<img src='https://placeholdit.imgix.net/~text?txtsize=18&txt=item&w=50&h=50' alt='' className='media-object'/>
 	      			</div>
-
-
 	      			<div className='media-body'>
 	      				<h5 className='media-heading'>ger</h5>
 	      				<span># x $xx.xx</span>
