@@ -45,7 +45,7 @@ class Items extends Component {
     return (
     <div className='row text-center'>
       {item} 
-      <CartWidget qty={this.state.incart} />
+      <CartWidget qty={this.state.incart} data={this.props.data} />
     </div>
     );
   }
