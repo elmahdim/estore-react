@@ -23,16 +23,19 @@ class CartWidget extends Component {
     let itemsList = localStorage.getItem('itemsList');
     let data = this.props.data;
     let WidgetItems = [];
-
-    WidgetItems = data.filter(function(item){
-      for (var i = 0; i < JSON.parse(itemsList).length; i++) {
-        let el = JSON.parse(itemsList)[i];
-        if(el.id === item._id){
-          return true;
+    if (itemsList != null) {
+      WidgetItems = data.filter(function(item){
+        for (var i = 0; i < JSON.parse(itemsList).length; i++) {
+          let el = JSON.parse(itemsList)[i];
+          if(el.id === item._id){
+            return true;
+          }
         }
-      }
-      return false;
-    });
+        return false;
+      });
+    } else {
+
+    }
     let item = WidgetItems.map((_item, i) => {
       return (
         <div className='media' key={i} id={_item._id}>
@@ -52,10 +55,9 @@ class CartWidget extends Component {
       	<aside className={'sidebar ' + active}>
       		<div className='sidebar-inner'>
       			<i onClick={this._handleVisibility} className='fa fa-times close'></i>
-      			<h4 className='text-capitalize'>Cart summary</h4>
-      			<p>Cart subtotal (<Link to='/cart'>{this.props.qty} item</Link>): $XX.XX</p>
+      			<h4 className='text-capitalize'>Cart summary</h4>{itemsList ? <p>Cart subtotal (<Link to='/cart'>{this.props.qty} item</Link>): $XX.XX</p> : null }
       			<hr/>
-            {item}
+            {itemsList ? item : <div className="alert alert-warning">Your shopping cart is empty</div> }
       			<hr/>
   				<p>
   					<Link to='/cart' className='btn btn-default btn-block'>
