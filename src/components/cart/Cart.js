@@ -17,6 +17,7 @@ class Cart extends Component {
   }
   render() {
     const currentComponent = this.constructor.name.toLowerCase();
+    console.log(localStorage.getItem('cart'));
     return (
       <div className={'container component-' + currentComponent}>
         <Hero content={this.state.hero}/>
@@ -60,36 +61,9 @@ class Cart extends Component {
                     <i className="fa fa-trash-o text-danger fz-h4" role="button"></i>
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <div className='media'>
-                      <div className='media-left'>
-                        <img src='https://placeholdit.imgix.net/~text?txtsize=18&txt=item&w=50&h=50' alt='' className='media-object'/>
-                      </div>
-                      <div className='media-body'>
-                        <h5 className='media-heading'>ger</h5>
-                        <span className='text-muted'>Lorem ipsum dolor sit amet</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="input-group input-group-qty"> 
-                      <span className="input-group-addon text-muted" role="button">
-                        <i className="fa fa-minus"></i>
-                      </span> 
-                      <input className="form-control input-sm" /> 
-                      <span className="input-group-addon text-muted" role="button">
-                        <i className="fa fa-plus"></i>
-                      </span> 
-                    </div>
-                  </td>
-                  <td>$xx.xx</td>
-                  <td>
-                    <i className="fa fa-trash-o text-danger fz-h4" role="button"></i>
-                  </td>
-                </tr>
               </tbody>
             </table>
+            <hr />
             <Link to='/' className='btn btn-link'>Continue Shopping</Link>  
           </div>
           <div className="col-sm-4">

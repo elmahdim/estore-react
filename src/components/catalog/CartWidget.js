@@ -49,6 +49,8 @@ class CartWidget extends Component {
         </div>
       );
     });
+
+    localStorage.setItem('cart', JSON.stringify(WidgetItems));
     let grandTotal = [];
     WidgetItems.map((item, i) => {
       let total = parseFloat((item.qty * item.price).toFixed(2));
