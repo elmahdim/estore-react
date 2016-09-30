@@ -28,13 +28,12 @@ class CartWidget extends Component {
         for (var i = 0; i < JSON.parse(itemsList).length; i++) {
           let el = JSON.parse(itemsList)[i];
           if(el.id === item._id){
+            item.qty = el.qty;
             return true;
           }
         }
         return false;
       });
-    } else {
-
     }
     let item = WidgetItems.map((_item, i) => {
       return (
@@ -44,18 +43,27 @@ class CartWidget extends Component {
           </div>
           <div className='media-body'>
             <h5 className='media-heading'>{_item.name}</h5>
-            <span># x ${_item.price}</span>
-            <span className='text-muted pull-right'>$xx.xx</span>
+            <span>{_item.qty} x ${_item.price}</span>
+            <span className='text-muted pull-right'>${parseFloat((_item.qty * _item.price).toFixed(2))}</span>
           </div>
         </div>
       );
     });
+    let grandTotal = [];
+    WidgetItems.map((item, i) => {
+      let total = parseFloat((item.qty * item.price).toFixed(2));
+      grandTotal.push(total);
+    });
+    let sumTotal = (items, prop) => items.reduce((a, b) => a + b, 0);
+    let totalPrice = sumTotal(grandTotal);
+
     return (
       <div className='cart-widget text-left'>
       	<aside className={'sidebar ' + active}>
       		<div className='sidebar-inner'>
       			<i onClick={this._handleVisibility} className='fa fa-times close'></i>
-      			<h4 className='text-capitalize'>Cart summary</h4>{itemsList ? <p>Cart subtotal (<Link to='/cart'>{this.props.qty} item</Link>): $XX.XX</p> : null }
+      			<h4 className='text-capitalize'>Cart summary</h4>
+            {itemsList ? <p>Cart subtotal (<Link to='/cart'>{this.props.qty} item</Link>) <strong>${totalPrice}</strong></p> : null }
       			<hr/>
             {itemsList ? item : <div className="alert alert-warning">Your shopping cart is empty</div> }
       			<hr/>
