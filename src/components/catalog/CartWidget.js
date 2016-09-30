@@ -65,7 +65,7 @@ class CartWidget extends Component {
       			<h4 className='text-capitalize'>Cart summary</h4>
             {itemsList ? <p>Cart subtotal (<Link to='/cart'>{this.props.qty} item</Link>) <strong>${totalPrice}</strong></p> : null }
       			<hr/>
-            {itemsList ? item : <div className="alert alert-warning">Your shopping cart is empty</div> }
+            {itemsList ? item : <div className="alert alert-warning">You have no items in your <i className="fa fa-shopping-cart"></i></div> }
       			<hr/>
   				<p>
   					<Link to='/cart' className='btn btn-default btn-block'>
